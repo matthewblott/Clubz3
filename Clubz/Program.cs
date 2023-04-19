@@ -22,5 +22,7 @@ builder.Services.AddScoped<IMemberService, MemberService>();
 var app = builder.Build();
 
 app.MapControllers();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.Run();

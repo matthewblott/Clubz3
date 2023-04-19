@@ -6,7 +6,7 @@ using Models;
 using Services;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class ClubsController : ControllerBase
 {
   private readonly IClubService _clubService;

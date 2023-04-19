@@ -12,6 +12,6 @@ public class MemberService : IMemberService
   public IReadOnlyCollection<Club> All() => _clubzContext.Clubs.ToList();
 
   public IReadOnlyCollection<Member> ByClub(int clubId)
-    => _clubzContext.Members.Where(m => m.Id == clubId).ToList();
+    => _clubzContext.Members.Where(m => m.ClubId == clubId).ToList();
 
 }
