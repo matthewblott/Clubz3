@@ -9,7 +9,24 @@ public class ClubService : IClubService
 
   public ClubService(IClubzContext clubzContext) => _clubzContext = clubzContext;
 
-  public IReadOnlyCollection<Club> All() => _clubzContext.Clubs.ToList();
+  public IEnumerable<Club> All() => _clubzContext.Clubs.ToList();
+  public int Create(Club club)
+  {
+    _clubzContext.Clubs.Add(club);
+    _clubzContext.SaveChanges();
+    return club.Id;
+  }
 
+  public void Update(Club club)
+  {
+    _clubzContext.Clubs.Update(club);
+    _clubzContext.SaveChanges();
+  }
 
+  public void Delete(int id)
+  {
+    _clubzContext.Clubs.Remove(new Club { Id = id });
+    _clubzContext.SaveChanges();
+  }
+  
 }

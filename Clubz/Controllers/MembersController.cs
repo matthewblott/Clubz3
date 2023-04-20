@@ -1,18 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace Clubz.Controllers;
 
-using Models;
+using Microsoft.AspNetCore.Mvc;
 using Services;
 
-[ApiController]
-[Route("api/[controller]")]
-public class MembersController : ControllerBase
+public class MembersController : Controller
 {
   private readonly IMemberService _memberService;
 
   public MembersController(IMemberService memberService) => _memberService = memberService;
 
-  public IEnumerable<Member> Get(int clubId) => _memberService.ByClub(clubId);
-  
+  public IActionResult Index(int clubId) => View(_memberService.ByClub(clubId));
 }

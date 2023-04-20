@@ -1,0 +1,87 @@
+@model IEnumerable<Clubz.Models.Member>
+
+<table>
+    <thead>
+    <tr>
+        <td>
+            Id            
+        </td>
+        <td>
+            Club Id
+        </td>
+        <td>
+            Forename
+        </td>
+        <td>
+            Surname
+        </td>
+        <td>
+            Email
+        </td>
+    </tr>
+    </thead>        
+    <tbody> 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <form id="form@(item.Id)">
+                <td>
+                    <input name="Id" value="@item.Id" readonly type="number">
+                </td>
+                <td>
+                    <input name="ClubId" value="@item.ClubId" type="number">
+                </td>
+                <td>
+                    <input type="text" name="Forename" value="@item.Forename" required>
+                </td>
+                <td>
+                    <input type="text" name="Surname" value="@item.Surname" required>
+                </td>
+                <td>
+                    <input type="text" name="EmailAddress" value="@item.EmailAddress" required>
+                </td>
+            </form>
+            <td>
+                <button form="form@(item.Id)" asp-controller="ApiClubs" asp-action="Put" formmethod="put" type="submit">Put</button>
+            </td>
+            <td>
+                <button>Add Member</button>
+            </td>
+            <td>
+                <button form="form@(item.Id)" asp-controller="ApiClubs" asp-action="Delete" formmethod="delete" type="submit">Delete</button>
+            </td>
+        </tr>
+    }
+            <tr>
+                <form id="form0">
+                    <td>
+                        <input name="Id" value="0" readonly type="number">
+                    </td>
+                    <td>
+                        <input name="ClubId" type="number" value="0" required>
+                    </td>
+                    <td>
+                        <input type="text" name="Forename" value="" required>
+                    </td>
+                    <td>
+                        <input type="text" name="Surname" value="" required>
+                    </td>
+                    <td>
+                        <input type="text" name="EmailAddress" value="" required>
+                    </td>
+                </form>
+                <td>
+                    <button form="form0" asp-controller="ApiClubs" asp-action="Put" formmethod="post" type="submit">Post</button>
+                </td>
+                <td>
+                    <button disabled>Add Member</button>
+                </td>
+                <td>
+                    <button disabled>Delete</button>
+                </td>
+            </tr>
+    </tbody>
+
+</table>
+
+<script src="~/js/site.js"></script>

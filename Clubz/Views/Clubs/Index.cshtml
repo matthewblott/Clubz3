@@ -1,0 +1,88 @@
+@model IEnumerable<Clubz.Models.Club>
+
+<table>
+    <thead>
+    <tr>
+        <td>
+            Id            
+        </td>
+        <td>
+            Name
+        </td>
+        <td>
+            Address Line 1
+        </td>
+        <td>
+            Town
+        </td>
+        <td>
+            Postcode
+        </td>
+    </tr>
+    </thead>        
+    <tbody> 
+    @foreach (var item in Model)
+    {
+        <tr class="row@(item.Id)">
+            <form id="form@(item.Id)">
+                <td>
+                    <input name="Id" value="@item.Id" readonly type="number">
+                </td>
+                <td>
+                    <input type="text" name="Name" value="@item.Name" required>
+                </td>
+                <td>
+                    <input type="text" name="AddressLine1" value="@item.AddressLine1" required>
+                </td>
+                <td>
+                    <input type="text" name="PostalTown" value="@item.PostalTown" required>
+                </td>
+                <td>
+                    <input type="text" name="Postcode" value="@item.Postcode" required>
+                </td>
+            </form>
+            <td>
+                <button form="form@(item.Id)" asp-controller="ApiClubs" asp-action="Put" formmethod="put" type="submit">Put</button>
+            </td>
+            <td>
+                <button>Add Member</button>
+            </td>
+            <td>
+                <button form="form@(item.Id)" asp-controller="ApiClubs" asp-action="Delete" formmethod="delete" type="submit">Delete</button>
+            </td>
+        </tr>
+    }
+            <tr class="row0">
+                <form id="form0">
+                    <td>
+                        <input type="text" name="Id" value="0" readonly type="number">
+                    </td>
+                    <td>
+                        <input type="text" name="Name" value="" required>
+                    </td>
+                    <td>
+                        <input type="text" name="AddressLine1" value="" required>
+                    </td>
+                    <td>
+                        <input type="text" name="PostalTown" value="" required>
+                    </td>
+                    <td>
+                        <input type="text" name="Postcode" value="" required>
+                    </td>
+                </form>
+                <td>
+                    <button form="form0" asp-controller="ApiClubs" asp-action="Post" formmethod="post" type="submit">Post</button>
+                </td>
+                <td>
+                    <button disabled>Add Member</button>
+                </td>
+                <td>
+                    <button form="form0" asp-controller="ApiClubs" asp-action="Delete" formmethod="delete" type="submit" disabled>Delete</button>
+
+                </td>
+            </tr>
+    </tbody>
+
+</table>
+
+<script src="~/js/site.js"></script>
